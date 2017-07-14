@@ -1,0 +1,3 @@
+[submodule "caffe-dilation"]
+	path = caffe-dilation
+	url = https://github.com/fyu/caffe-dilation.git
