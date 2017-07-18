@@ -11,7 +11,7 @@ import numpy as np
 from os.path import dirname, exists, join, splitext
 import sys
 
-import util
+import map_util
 
 __author__ = 'Fisher Yu'
 __copyright__ = 'Copyright (c) 2016, Fisher Yu'
@@ -93,7 +93,7 @@ def predict(dataset_name, input_path, output_path):
         prediction.append(col_prediction)
     prob = np.concatenate(prediction, axis=1)
     if dataset.zoom > 1:
-        prob = util.interp_map(prob, dataset.zoom, image_size[1], image_size[0])
+        prob = map_util.interp_map(prob, dataset.zoom, image_size[1], image_size[0])
     prediction = np.argmax(prob.transpose([1, 2, 0]), axis=2)
     color_image = dataset.palette[prediction.ravel()].reshape(image_size)
     color_image = cv2.cvtColor(color_image, cv2.COLOR_RGB2BGR)
